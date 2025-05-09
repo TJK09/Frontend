@@ -1,6 +1,6 @@
 // src/pages/LabTestBooking.jsx
 import React, { useState } from 'react';
-import Popup from '/components/Popup';
+import Popup from '@/components/Popup';
 
 const LabTestBooking = () => {
   const [showPopup, setShowPopup] = useState(false);

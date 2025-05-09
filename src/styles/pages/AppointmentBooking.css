@@ -1,0 +1,33 @@
+.appointment-booking {
+  padding: 30px;
+  max-width: 600px;
+  margin: auto;
+  background-color: #1E1E2F;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.appointment-booking h2 {
+  font-size: 26px;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.appointment-booking button {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: block;
+  margin: 20px auto 0;
+}
+
+.appointment-booking button:hover {
+  background-color: #0056b3;
+  transform: scale(1.03);
+}

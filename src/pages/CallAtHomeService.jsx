@@ -1,31 +1,40 @@
-// src/pages/CallAtHomeService.jsx
 import React, { useState } from 'react';
-import Popup from '/components/Popup';
+import Popup from '@/components/Popup';
+import '../styles/pages/CallAtHomeService.css';
 
 const CallAtHomeService = () => {
   const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Call-at-Home service requested!');
+    alert("Service Request Sent!");
     setShowPopup(false);
   };
 
   return (
-    <div>
-      <h2>Call at Home Service</h2>
+    <div className="call-home">
+      <h2>Request a Home Service</h2>
       <button onClick={() => setShowPopup(true)}>Request Service</button>
 
       {showPopup && (
-        <Popup title="Call at Home" onClose={() => setShowPopup(false)}>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Address: <input type="text" required />
-            </label><br />
-            <label>
-              Preferred Time: <input type="time" required />
-            </label><br />
-            <button type="submit">Request</button>
+        <Popup title="Home Service Request" onClose={() => setShowPopup(false)}>
+          <form className="home-service-form" onSubmit={handleSubmit}>
+            <label>Name</label>
+            <input type="text" required />
+
+            <label>Contact Number</label>
+            <input type="tel" required />
+
+            <label>Address</label>
+            <textarea required rows={3}></textarea>
+
+            <label>Service Needed</label>
+            <input type="text" required />
+
+            <label>Preferred Time</label>
+            <input type="time" required />
+
+            <button type="submit">Submit Request</button>
           </form>
         </Popup>
       )}

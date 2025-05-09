@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Popup from '@/components/Popup';
+import '../styles/pages/AppointmentBooking.css';
 
 const AppointmentBooking = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -11,7 +12,7 @@ const AppointmentBooking = () => {
   };
 
   return (
-    <div>
+    <div className='appointment-booking'>
       <h2>Appointment Booking</h2>
       <button onClick={() => setShowPopup(true)}>Book Appointment</button>
 

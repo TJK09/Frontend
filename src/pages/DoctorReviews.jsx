@@ -1,6 +1,6 @@
 // src/pages/DoctorReviews.jsx
 import React, { useState } from 'react';
-import Popup from '/components/Popup';
+import Popup from '@/components/Popup';
 
 const DoctorReviews = () => {
   const [showPopup, setShowPopup] = useState(false);

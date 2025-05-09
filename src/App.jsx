@@ -3,8 +3,16 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 
-// import Home from '/pages/Home';
+import Home from './pages/Home';
 import AppointmentBooking from './pages/AppointmentBooking';
+import CallAtHomeService from './pages/CallAtHomeService';
+import LabTestBooking from './pages/LabTestBooking';
+import LabReports from './pages/LabReports';
+import MedicalRecords from './pages/MedicalRecords';
+import ProgressReports from './pages/ProgressReports';
+import DoctorPrescription from './pages/DoctorPrescription';
+import DoctorReviews from './pages/DoctorReviews';
+import AdminManagement from './pages/AdminManagement';
 
 
 const App = () => {
@@ -15,6 +23,15 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/appointment" element={<AppointmentBooking />} />
+          <Route path="/call-at-home" element={<CallAtHomeService />} />
+          <Route path="/lab-test" element={<LabTestBooking />} />
+          <Route path="/lab-reports" element={<LabReports />} />
+          <Route path="/medical-records" element={<MedicalRecords />} />
+          <Route path="/progress" element={<ProgressReports />} />
+          <Route path="/prescriptions" element={<DoctorPrescription />} />
+          <Route path="/reviews" element={<DoctorReviews />} />
+          <Route path="/admin" element={<AdminManagement />} />
+          
         </Routes>
       </div>
     </>
