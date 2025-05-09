@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import Popup from '@/components/Popup';
-import '../styles/pages/CallAtHomeService.css';
+import Popup from '@/components/Popup'; // Assuming your Popup component is inside 'components'
+import { Button, Form } from 'react-bootstrap'; // Import necessary Bootstrap components
+import '../styles/pages/CallAtHomeService.css'; // Import custom CSS if needed
+import homeservice from '../assets/callathome.jpg'; 
 
 const CallAtHomeService = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -8,34 +10,85 @@ const CallAtHomeService = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Service Request Sent!");
-    setShowPopup(false);
+    setShowPopup(false); // Close the popup after submitting the request
   };
 
   return (
     <div className="call-home">
-      <h2>Request a Home Service</h2>
-      <button onClick={() => setShowPopup(true)}>Request Service</button>
+      {/* Main Content Before Popup */}
+      <div className="intro-section text-center mb-5">
+        <h2>Our Home Service - Convenient, Fast, and Reliable</h2>
+        <p>
+          Need assistance at home? We provide professional services right at your doorstep. Whether you require a plumbing service, electrical work, or a simple home appliance repair, our team of experts is ready to help.
+        </p>
+        <img 
+          src={homeservice} 
+          alt="Home Service" 
+          className="img-fluid mb-4" 
+        />
+        <p>
+          Book a home service appointment with us today and get the help you need, when you need it!
+        </p>
+      </div>
 
+      {/* Button to open the popup */}
+      <div className="text-center mb-4">
+        <Button
+          variant="primary"
+          size="lg"
+          onClick={() => setShowPopup(true)}
+        >
+          Request Service
+        </Button>
+      </div>
+
+      {/* Conditionally render the Popup */}
       {showPopup && (
-        <Popup title="Home Service Request" onClose={() => setShowPopup(false)}>
-          <form className="home-service-form" onSubmit={handleSubmit}>
-            <label>Name</label>
-            <input type="text" required />
+        <Popup title="Home Service Request" onClose={() => setShowPopup(false)} show={showPopup}>
+          <Form onSubmit={handleSubmit}>
+            {/* Name Field */}
+            <Form.Group controlId="formName" className="mb-3">
+              <Form.Label>Name</Form.Label>
+              <Form.Control type="text" placeholder="Enter your name" required />
+            </Form.Group>
 
-            <label>Contact Number</label>
-            <input type="tel" required />
+            {/* Contact Number Field */}
+            <Form.Group controlId="formContact" className="mb-3">
+              <Form.Label>Contact Number</Form.Label>
+              <Form.Control type="tel" placeholder="Enter your contact number" required />
+            </Form.Group>
 
-            <label>Address</label>
-            <textarea required rows={3}></textarea>
+            {/* Address Field */}
+            <Form.Group controlId="formAddress" className="mb-3">
+              <Form.Label>Address</Form.Label>
+              <Form.Control as="textarea" rows={3} placeholder="Enter your address" required />
+            </Form.Group>
 
-            <label>Service Needed</label>
-            <input type="text" required />
+            {/* Service Needed Field with Scroll */}
+            <Form.Group controlId="formServiceNeeded" className="mb-3">
+              <Form.Label>Service Needed</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={5}
+                placeholder="Describe the service needed"
+                style={{ resize: 'vertical', maxHeight: '150px' }}
+                required
+              />
+            </Form.Group>
 
-            <label>Preferred Time</label>
-            <input type="time" required />
+            {/* Preferred Time Field */}
+            <Form.Group controlId="formPreferredTime" className="mb-3">
+              <Form.Label>Preferred Time</Form.Label>
+              <Form.Control type="time" required />
+            </Form.Group>
 
-            <button type="submit">Submit Request</button>
-          </form>
+            {/* Submit Button */}
+            <div className="text-center">
+              <Button variant="success" type="submit">
+                Submit Request
+              </Button>
+            </div>
+          </Form>
         </Popup>
       )}
     </div>

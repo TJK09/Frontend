@@ -1,18 +1,22 @@
-// src/components/Popup.jsx
 import React from 'react';
-import '../styles/components/Popup.css';
+import { Modal, Button } from 'react-bootstrap'; // Import Bootstrap Modal and Button components
+import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
 
-function Popup({ title, children, onClose }) {
+function Popup({ title, children, onClose, show }) {
   return (
-    <div className="popup-overlay">
-      <div className="popup-box">
-        <div className="popup-header">
-          <h3>{title}</h3>
-          <button className="popup-close-btn" onClick={onClose}>X</button>
-        </div>
-        <div>{children}</div>
-      </div>
-    </div>
+    <Modal show={show} onHide={onClose} centered>
+      <Modal.Header closeButton>
+        <Modal.Title>{title}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {children}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onClose}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 }
 
