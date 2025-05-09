@@ -2,6 +2,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/footer';
 
 import Home from './pages/Home';
 import AppointmentBooking from './pages/AppointmentBooking';
@@ -13,6 +14,8 @@ import ProgressReports from './pages/ProgressReports';
 import DoctorPrescription from './pages/DoctorPrescription';
 import DoctorReviews from './pages/DoctorReviews';
 import AdminManagement from './pages/AdminManagement';
+import Signup from './pages/Signup';
+import Signin from './pages/Signin';
 
 
 const App = () => {
@@ -31,9 +34,11 @@ const App = () => {
           <Route path="/prescriptions" element={<DoctorPrescription />} />
           <Route path="/reviews" element={<DoctorReviews />} />
           <Route path="/admin" element={<AdminManagement />} />
-          
+          <Route path="/Signup" element={<Signup/>}/>
+          <Route path="/Signin" element={<Signin/>}/>          
         </Routes>
       </div>
+      <Footer/>
     </>
   );
 };
