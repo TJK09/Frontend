@@ -1,0 +1,49 @@
+.navbar {
+  background-color: #1E1E2F;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo img {
+  height: 40px;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-auth .auth-button {
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid white;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-auth .auth-button:hover {
+  background-color: white;
+  color: #1E1E2F;
+}
