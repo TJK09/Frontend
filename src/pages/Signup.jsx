@@ -24,6 +24,10 @@ const SignUp = () => {
         <input type='email' name='email' value={formData.email} onChange={handleChange} required />
         <label>Password:</label>
         <input type='password' name='password' value={formData.password} onChange={handleChange} required />
+        <label>Mobile Number:</label>
+        <input type='number' name='Mobile Number' value={formData.number} onChange={handleChange} required />
+        <label>Date of Birth</label>
+        <input type='date' name='Date of Birth' value={formData.DOB} onChange={handleChange} required />
         <button type='submit'>Sign Up</button>
       </form>
     </div>

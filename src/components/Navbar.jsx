@@ -35,8 +35,7 @@ const Navbar = () => {
 
         {/* Auth Buttons on Right */}
         <div className="d-flex">
-          <Link to="/signin" className="btn btn-outline-primary me-2">Sign In</Link>
-          <Link to="/signup" className="btn btn-primary">Sign Up</Link>
+          <Link to="/Login" className="btn btn-outline-primary me-2">Login</Link>
         </div>
       </div>
     </nav>

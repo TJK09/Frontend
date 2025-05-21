@@ -19,6 +19,7 @@ import AdminManagement from './pages/admin/AdminManagement';
 import Signup from './pages/Signup';
 import Signin from './pages/Signin';
 import DepressionAnalysis from './pages/patient/DepressionAnalysis';
+import Options from "./pages/Options";
 
 
 const App = () => {
@@ -39,7 +40,11 @@ const App = () => {
           <Route path="/reviews" element={<DoctorReviews />} />
           <Route path="/admin" element={<AdminManagement />} />
           <Route path="/Signup" element={<Signup/>}/>
-          <Route path="/Signin" element={<Signin/>}/>          
+          <Route path="/Signin" element={<Signin/>}/>   
+          <Route path="/login" element={<Options/>}/>
+          <Route path="/login/admin" element={<Signin/>}/>
+          <Route path="/login/patient" element={<Signin/>}/>
+          <Route path="/login/Doctor" element={<Signin/>}/>       
         </Routes>
       </div>
       <Footer/>

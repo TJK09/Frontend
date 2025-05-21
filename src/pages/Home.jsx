@@ -62,8 +62,7 @@ const Home = () => {
         <Carousel autoPlay infiniteLoop showThumbs={false}>
           {images.map((item, index) => (
             <div key={index}>
-              <img src={item.src} alt={`Slide ${index + 1}`} />
-              <p className='legend'>{item.caption}</p>
+              <img src={item.src} alt={`Slide ${index + 1}`} style={{objectFit:"cover", width:"100%", height:600}} />
             </div>
           ))}
         </Carousel>
@@ -127,7 +126,7 @@ const Home = () => {
             {doctors.map((doc, index) => (
               <div className="col-md-4 mb-2" key={index}>
                 <div className="card h-100 text-center">
-                  <img src={doc.image} alt={doc.name} className="card-img-top" />
+                  <img src={doc.image} alt={doc.name} className="card-img-top" style={{width: "100%", height: 400, objectFit: "cover"}} />
                   <div className="card-body">
                     <h5 className="card-title">{doc.name}</h5>
                     <p className="card-text">{doc.specialty}</p>
