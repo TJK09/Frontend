@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Popup from '@/components/Popup'; // Assuming your Popup component is inside 'components'
-import { Button, Form } from 'react-bootstrap'; // Import necessary Bootstrap components
-import '../../styles/pages/CallAtHomeService.css'; // Import custom CSS if needed
+import Popup from '@/components/Popup'; 
+import { Button, Form } from 'react-bootstrap'; 
+import '../../styles/pages/CallAtHomeService.css'; 
 import homeservice from '../../assets/callathome.jpg'; 
 
 const CallAtHomeService = () => {
@@ -10,12 +10,11 @@ const CallAtHomeService = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Service Request Sent!");
-    setShowPopup(false); // Close the popup after submitting the request
+    setShowPopup(false); 
   };
 
   return (
     <div className="call-home">
-      {/* Main Content Before Popup */}
       <div className="intro-section text-center mb-5">
         <h2>Our Home Service - Convenient, Fast, and Reliable</h2>
         <p>

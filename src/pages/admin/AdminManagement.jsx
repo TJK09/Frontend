@@ -1,4 +1,3 @@
-// src/pages/AdminManagement.jsx
 import React from 'react';
 
 const AdminManagement = () => {

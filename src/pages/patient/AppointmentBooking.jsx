@@ -1,28 +1,75 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Popup from '@/components/Popup';
-import { Button, Form, Row, Col } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import img4 from '../../assets/DA.jpg';
+import img5 from '../../assets/DB.jpg';
+import img6 from '../../assets/DC.jpg';
+import img7 from '../../assets/DD.jpg';
+import img8 from '../../assets/DE.jpg';
+import img12 from '../../assets/DF.jpg';
+
 
 const AppointmentBooking = () => {
   const [showPopup, setShowPopup] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    date: '',
-    time: '',
-    contact: '',
-    appointmentType: 'Consultation',
-    message: '',
-  });
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const [formData, setFormData] = useState({
+    date: '',
+    time: '',
+    description: '',
+    doctor: '',
+  });
+
+  const doctors = [
+    {
+      id: 24,
+      name: 'Dr. Taj Khan',
+      specialization: 'Cardiologist',
+      image: img4,
+    },
+    {
+      id: 25,
+      name: 'Dr. Muhammad Rehman',
+      specialization: 'Dermatologist',
+      image: img5,
+    },
+    {
+      id: 26,
+      name: 'Dr. Mehmood Ul Hassan',
+      specialization: 'Neurologist',
+      image: img6,
+    },
+    {
+      id: 27,
+      name: 'Dr. Anwar Khan',
+      specialization: 'Orthopedic',
+      image: img7,
+    },
+    {
+      id: 28,
+      name: 'Dr. Fatima Zahid',
+      specialization: 'Psychiatrist',
+      image: img12,
+    },
+    {
+      id: 29,
+      name: 'Dr. Ali Raza',
+      specialization: 'Medical Specialist',
+      image: img8,
+    },
+    
+  ];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
-    });
+    }));
   };
 
   const handleFormSubmit = async (e) => {
@@ -32,11 +79,12 @@ const AppointmentBooking = () => {
 
     try {
       const response = await axios.post(
-        'http://127.0.0.1:8000/api/appointments/', // Replace with your Django API URL
+        'http://127.0.0.1:8000/api/appointments/',
         formData,
         {
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
         }
       );
@@ -44,8 +92,11 @@ const AppointmentBooking = () => {
       if (response.status === 201) {
         alert('Appointment Submitted!');
         setShowPopup(false);
+        setFormData({ date: '', time: '', description: '', doctor: '' });
+        setSelectedDoctor(null);
       }
     } catch (err) {
+      console.error('Submit error:', err.response?.data || err.message);
       setError('There was an error submitting your appointment. Please try again.');
     } finally {
       setLoading(false);
@@ -53,163 +104,72 @@ const AppointmentBooking = () => {
   };
 
   return (
-    <div className="appointment-booking ">
-      {/* Welcome Section */}
-      <section className="welcome-section mb-4">
-        <h2 className="text-center mb-3">Welcome to DeepHeal Appointment Booking</h2>
-        <p className="text-center">
-          Book your appointment with our experienced doctors. Whether it's for a routine consultation, follow-up, or emergency,
-          we are here to provide you with the best healthcare experience. Please fill out the form below to schedule your appointment.
-        </p>
-        <p className="text-center">
-          After submitting the form, you will receive a confirmation and instructions for your upcoming visit.
-        </p>
-      </section>
+    <div className="appointment-booking container py-4 ">
+      <h2 className="text-center mb-3">Book an Appointment</h2>
+      <p className="text-center mb-4">Choose a doctor and book your appointment.</p>
 
-      {/* Instructions Section */}
-      <section className="instructions-section mb-4">
-        <h3 className="text-center mb-3">How to Book Your Appointment:</h3>
-        <ol className="text-center">
-          <li>Fill in your personal details and preferred appointment time.</li>
-          <li>Select the type of appointment based on your needs (Consultation, Follow-up, Emergency).</li>
-          <li>Submit the form and wait for the confirmation of your appointment.</li>
-        </ol>
-      </section>
+    <div className="container">
+  <div className="row">
+    {doctors.map((doctor) => (
+      <div key={doctor.id} className="col-md-4 mb-4 d-flex justify-content-center">
+        <div
+          className="card"
+          style={{ width: '18rem', cursor: 'pointer' }}
+          onClick={() => {
+            setSelectedDoctor(doctor);
+            setFormData((prev) => ({ ...prev, doctor: doctor.id }));
+            setShowPopup(true);
+          }}
+        >
+              <img 
+      src={doctor.image} 
+      className="card-img-top" 
+      alt={doctor.name} 
+      style={{ objectFit: "fill", width: "100%", height: "200px" }} 
+    />
 
-      {/* Button to open the popup */}
-      <Button
-        variant="primary"
-        size="lg"
-        onClick={() => setShowPopup(true)}
-        className="d-block mx-auto"
-      >
-        Book Appointment
-      </Button>
+          <div className="card-body">
+            <h5 className="card-title">{doctor.name}</h5>
+            <p className="card-text">{doctor.specialization}</p>
+            <Button variant="primary" className="w-100">Book Appointment</Button>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
-      {/* Conditionally render the Popup */}
+
       {showPopup && (
         <Popup title="Book Appointment" onClose={() => setShowPopup(false)} show={showPopup}>
           <Form onSubmit={handleFormSubmit}>
-            {/* Name Field */}
-            <Form.Group controlId="formName" className="mb-3">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Enter your name"
-                required
-              />
-            </Form.Group>
+            {selectedDoctor && (
+              <div className="mb-3">
+                <strong>Booking with:</strong> {selectedDoctor.name} ({selectedDoctor.specialization})
+              </div>
+            )}
 
-            {/* Contact Field */}
-            <Form.Group controlId="formContact" className="mb-3">
-              <Form.Label>Contact Number</Form.Label>
-              <Form.Control
-                type="text"
-                name="contact"
-                value={formData.contact}
-                onChange={handleChange}
-                placeholder="Enter your contact number"
-                required
-              />
-            </Form.Group>
-
-            {/* Appointment Date Field */}
-            <Form.Group controlId="formDate" className="mb-3">
+            <Form.Group className="mb-3">
               <Form.Label>Date</Form.Label>
-              <Form.Control
-                type="date"
-                name="date"
-                value={formData.date}
-                onChange={handleChange}
-                required
-              />
+              <Form.Control type="date" name="date" value={formData.date} onChange={handleChange} required />
             </Form.Group>
 
-            {/* Appointment Time Field */}
-            <Form.Group controlId="formTime" className="mb-3">
+            <Form.Group className="mb-3">
               <Form.Label>Time</Form.Label>
-              <Form.Control
-                type="time"
-                name="time"
-                value={formData.time}
-                onChange={handleChange}
-                required
-              />
+              <Form.Control type="time" name="time" value={formData.time} onChange={handleChange} required />
             </Form.Group>
 
-            {/* Appointment Type Dropdown */}
-            <Form.Group controlId="formAppointmentType" className="mb-3">
-              <Form.Label>Appointment Type</Form.Label>
-              <Form.Control
-                as="select"
-                name="appointmentType"
-                value={formData.appointmentType}
-                onChange={handleChange}
-                required
-              >
-                <option value="Consultation">Consultation</option>
-                <option value="Follow-up">Follow-up</option>
-                <option value="Emergency">Emergency</option>
-              </Form.Control>
+            <Form.Group className="mb-3">
+              <Form.Label>Description</Form.Label>
+              <Form.Control as="textarea" name="description" value={formData.description} onChange={handleChange} rows={3} />
             </Form.Group>
 
-            {/* Message Field */}
-            <Form.Group controlId="formMessage" className="mb-3">
-              <Form.Label>Message (Optional)</Form.Label>
-              <Form.Control
-                as="textarea"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={3}
-                placeholder="Additional details or message"
-              />
-            </Form.Group>
-
-            {/* Summary of Appointment */}
-            <div className="appointment-summary mb-3">
-              <h5>Review Your Appointment</h5>
-              <Row>
-                <Col>
-                  <strong>Name:</strong> {formData.name}
-                </Col>
-                <Col>
-                  <strong>Contact:</strong> {formData.contact}
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <strong>Date:</strong> {formData.date}
-                </Col>
-                <Col>
-                  <strong>Time:</strong> {formData.time}
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <strong>Type:</strong> {formData.appointmentType}
-                </Col>
-              </Row>
-              {formData.message && (
-                <Row>
-                  <Col>
-                    <strong>Message:</strong> {formData.message}
-                  </Col>
-                </Row>
-              )}
-            </div>
-
-            {/* Submit Button */}
             <div className="text-center">
               <Button variant="success" type="submit" disabled={loading}>
                 {loading ? 'Submitting...' : 'Submit Appointment'}
               </Button>
             </div>
 
-            {/* Error message */}
             {error && <div className="text-danger mt-3 text-center">{error}</div>}
           </Form>
         </Popup>

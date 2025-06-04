@@ -5,11 +5,17 @@ import '../styles/pages/Home.css';
 import img from '../assets/1.webp';
 import img2 from '../assets/patient-rooms-1.jpg';
 import img3 from  '../assets/3.jpeg';
-import img4 from '../assets/D1.jpg';
-import img5 from '../assets/D2.jpg';
-import img6 from '../assets/D3.jpeg';
-import img7 from '../assets/D4.avif';
-import img8 from '../assets/D5.webp';
+import img4 from '../assets/DA.jpg';
+import img5 from '../assets/DB.jpg';
+import img6 from '../assets/DC.jpg';
+import img7 from '../assets/DD.jpg';
+import img8 from '../assets/DE.jpg';
+import img12 from '../assets/DF.jpg';
+import { Link } from 'react-router-dom';
+import img9 from '../assets/appoint.webp';
+import img10 from '../assets/lab.jfif.jpg';
+import img11 from '../assets/Medical.jfif.jpg';
+import dep from '../assets/dep.jfif.jpg';
 
 const Home = () => {
   const images = [
@@ -28,12 +34,43 @@ const Home = () => {
   ];
 
   const doctors = [
-    { name: 'Dr. John Doe', specialty: 'Cardiologist', image: img4 },
-    { name: 'Dr. Jane Smith', specialty: 'Neurologist', image: img5 },
-    { name: 'Dr. Emily Johnson', specialty: 'Psychaitrist', image: img6 },
-    { name: 'Dr. Michael Brown', specialty: 'Dermatologist', image: img7 },
-    { name: 'Dr. Will Smith', specialty: 'Orthopedic Surgeon', image: img8 },
-    { name: 'Dr. Usman', specialty: 'Gynaecologist', image:img8},
+    {
+      id: 24,
+      name: 'Dr. Taj Khan',
+      specialty: 'Cardiologist',
+      image: img4,
+    },
+    {
+      id: 25,
+      name: 'Dr. Muhammad Rehman',
+      specialty: 'Dermatologist',
+      image: img5,
+    },
+    {
+      id: 26,
+      name: 'Dr. Mehmood Ul Hassan',
+      specialty: 'Neurologist',
+      image: img6,
+    },
+    {
+      id: 27,
+      name: 'Dr. Anwar Khan',
+      specialty: 'Orthopedic',
+      image: img7,
+    },
+    {
+      id: 28,
+      name: 'Dr. Fatima Zahid',
+      specialty: 'Psychiatrist',
+      image: img12,
+    },
+    {
+      id: 29,
+      name: 'Dr. Ali Raza',
+      specialty: 'Medical Specialist',
+      image: img8,
+    },
+    
   ];
 
   const faqs = [
@@ -74,24 +111,29 @@ const Home = () => {
             <div className="row">
               <div className="col-md-6 mb-4">
                 <div className="card h-100 shadow-sm bg-dark">
+                   <img src={img9} alt="Card-Img" className="card-img-top" style={{width:"100%", height:200, objectFit: "cover" }}></img>
                   <div className="card-body text-light">
-                    <h5 className= "card-title">Emergency Care</h5>
+                    <h5 className= "card-title">Appointment Booking</h5>
                     <p className="card-text">
-                      24/7 emergency services with advanced trauma care and rapid response.
+                      Now you can book your doctor appointments with a click.
                     </p>
+                    <Link to="appointment" className='btn btn-danger'>Book your Appointment</Link>
                   </div>
                 </div>
               </div>
               <div className= "col-md-6 mb-4">
                 <div className="card h-100 shadow-sm bg-dark">
+                  <img src={img10} alt="Card-Img" className="card-img-top" style={{width:"100%", height:200, objectFit: "cover" }}></img>
                   <div className="card-body text-light">
                     <h5 className="card-title">Lab & Diagnostic</h5>
                     <p className="card-text">Fully Equipped Labs for routine and specialized diagnostics.</p>
+                    <Link to="/lab-test" className='btn btn-danger'>Conduct Lab Tests</Link>
                   </div>
                 </div>
               </div>
               <div className="col-md-6 mb-4">
                 <div className="card h-100 shadow-sm bg-dark">
+                   <img src={dep} alt="Card-Img" className="card-img-top" style={{width:"100%", height:200, objectFit: "cover" }}></img>
                   <div className="card-body text-light">
                     <h5 className="card-title">
                       AI based Depression Analysis
@@ -99,18 +141,21 @@ const Home = () => {
                     <p className="card-text">
                       AI based Depression Analysis with advanced algorithms and machine learning to detect that what is the condition of the patient
                     </p>
-                  </div>
+                    <Link to="/Depression" className='btn btn-danger'>Depression Check</Link>
+                  </div> 
                 </div>
               </div>
               <div className="col-md-6 mb-4 ">
                 <div className="card h-100 shadow-sm bg-dark">
+                   <img src={img11} alt="Card-Img" className="card-img-top" style={{width:"100%", height:200, objectFit: "cover" }}></img>
                   <div className="card-body bg-dark">
                     <h5 className="card-title text-white bg-dark">
-                      Appointment Booking
+                      Medical Records
                     </h5>
                     <p className="card-text text-white">
-                      Book your appointment with our doctors and get the best treatment.
+                      Now you dont have to carry the burden of your medical files, You'll have all the data stored in the system.
                     </p>
+                    <Link to="/medical-records" className='btn btn-danger' >Medical Records</Link>
                   </div>
                 </div>
               </div>
@@ -126,7 +171,7 @@ const Home = () => {
             {doctors.map((doc, index) => (
               <div className="col-md-4 mb-2" key={index}>
                 <div className="card h-100 text-center">
-                  <img src={doc.image} alt={doc.name} className="card-img-top" style={{width: "100%", height: 400, objectFit: "cover"}} />
+                  <img src={doc.image} alt={doc.name} className="card-img-top" style={{width: "100%", height: 400, objectFit: "fill"}} />
                   <div className="card-body">
                     <h5 className="card-title">{doc.name}</h5>
                     <p className="card-text">{doc.specialty}</p>
@@ -147,7 +192,7 @@ const Home = () => {
               </div>
               <div className="col-md-12 text-dark">
                 <p>We are comitted to delivering World-Class healthcare services with state of the art facilities, highly qualified professional staff, and compassionate care.</p>
-                <button className="btn btn-success mt-3">Discover More</button>
+                <Link to="/About-Us" className="btn btn-success mt-3">Discover More</Link>
               </div>
             </div>
         </div>
@@ -158,8 +203,8 @@ const Home = () => {
           <h2 className= "mb-4 text-light">News & Events</h2>
           <div className='row'>
             <div className=" col-md-6 mb-4">
-              <div className= "card h-100 shadow-sm">
-                <img src={img3} alt="News 1" className="card-img-top" />
+              <div className= "card h-60 shadow-sm">
+                <img src={img3} alt="News 1" className="card-img-top"  style={{width:"100%", height: 200, objectFit: "cover"}}/>
                 <div className="card-body">
                   <h5 className="card-title">How our depression System works</h5>
                   <p className="card-text">
@@ -169,8 +214,8 @@ const Home = () => {
               </div>
             </div>
             <div className= "col-md-6 mb-4">
-              <div className=" card h-100 shadow-sm">
-                <img src={img2} alt="News-2" className="card-img-top"></img>
+              <div className=" card h-600 shadow-sm">
+                <img src={img2} alt="News-2" className="card-img-top" style={{width:"100%", height:200, objectFit:"cover"}}></img>
                 <div className=" card-body">
                   <h5 className="card-title">
                     Free Health Camp 

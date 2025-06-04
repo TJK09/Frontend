@@ -25,7 +25,7 @@ const Footer = () => {
           <div className="col-md-4 mb-4">
             <h5>Contact Us</h5>
             <p>Email: support@deepheal.com</p>
-            <p>Phone: +92 300 1234567</p>
+            <p>Phone: 051-123456</p>
             <p>Location: Lahore, Pakistan</p>
           </div>
         </div>

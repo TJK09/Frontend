@@ -1,4 +1,3 @@
-// src/pages/DoctorReviews.jsx
 import React, { useState } from 'react';
 import Popup from '@/components/Popup';
 

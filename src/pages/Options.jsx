@@ -1,41 +1,36 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import img from "../assets/1.webp";
-import img2 from "../assets/3.jpeg";
-import img3 from "../assets/D1.jpg";
 
 function Option() {
+  const quotes = [
+    {
+      id: 1,
+      text: "“It is health that is real wealth and not pieces of gold and silver.”",
+      author: "Mahatma Gandhi",
+    },
+    {
+      id: 2,
+      text: "“Take care of your body. It’s the only place you have to live.”",
+      author: "Jim Rohn",
+    },
+    {
+      id: 3,
+      text: "“Health is the greatest gift, contentment the greatest wealth, faithfulness the best relationship.”",
+      author: "Buddha",
+    },
+  ];
+
   return (
     <div className="container py-5">
-      <h2 className="text-center mb-5 text-white">Login As</h2>
+      <h2 className="text-center mb-5 text-white">Health Quotes</h2>
       <div className="row g-4 justify-content-center">
-        <div className="col-md-4">
-          <div className="card text-center bg-dark">
-            <img src={img} alt="Doctor" className="card-img-top img-fluid" />
-            <div className="card-body">
-              <h5 className="card-title">Doctor</h5>
-              <Link to="/login/doctor" className="btn btn-primary">Login as Doctor</Link>
+        {quotes.map(({ id, text, author }) => (
+          <div key={id} className="col-md-4">
+            <div className="card text-center bg-dark text-white p-4" style={{ minHeight: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <p className="card-text fst-italic" style={{ fontSize: '1.2rem' }}>{text}</p>
+              <footer className="blockquote-footer text-white mt-3">{author}</footer>
             </div>
           </div>
-        </div>
-        <div className="col-md-4">
-          <div className="card text-center bg-dark">
-            <img src={img2} alt="Patient" className="card-img-top img-fluid" />
-            <div className="card-body">
-              <h5 className="card-title">Patient</h5>
-              <Link to="/login/patient" className="btn btn-primary">Login as Patient</Link>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="card text-center bg-dark">
-            <img src={img3} alt="Admin" className="card-img-top img-fluid" style={{ objectFit: "cover", width: "100%", height: 233 }} />
-            <div className="card-body">
-              <h5 className="card-title">Admin</h5>
-              <Link to="/login/admin" className="btn btn-primary">Login as Admin</Link>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

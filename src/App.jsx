@@ -20,6 +20,12 @@ import Signup from './pages/Signup';
 import Signin from './pages/Signin';
 import DepressionAnalysis from './pages/patient/DepressionAnalysis';
 import Options from "./pages/Options";
+import PatientDashboard from './pages/patient/PatientdashBoard';
+import DoctorDashboard from './pages/doctor/DoctordashBoard';
+import AdminDashboard from './pages/admin/AdmindashBoard';
+import EmailVerificationStatus from './pages/EmailVerificationStatus';
+import VerifyEmailToken from './pages/VerifyEmailToken';
+import AboutUs from './pages/About';
 
 
 const App = () => {
@@ -39,12 +45,18 @@ const App = () => {
           <Route path="/Depression" element={<DepressionAnalysis/>}/>
           <Route path="/reviews" element={<DoctorReviews />} />
           <Route path="/admin" element={<AdminManagement />} />
-          <Route path="/Signup" element={<Signup/>}/>
-          <Route path="/Signin" element={<Signin/>}/>   
+          <Route path="/signup" element={<Signup/>}/>
+          <Route path="/signin" element={<Signin/>}/>   
           <Route path="/login" element={<Options/>}/>
           <Route path="/login/admin" element={<Signin/>}/>
           <Route path="/login/patient" element={<Signin/>}/>
-          <Route path="/login/Doctor" element={<Signin/>}/>       
+          <Route path="/login/Doctor" element={<Signin/>}/>
+          <Route path="/dashboard/patient" element={<PatientDashboard />} />
+          <Route path="/dashboard/doctor" element={<DoctorDashboard />} />
+          <Route path="/dashboard/admin" element={<AdminDashboard />} /> 
+          <Route path="/emailverification" element={<EmailVerificationStatus />} />
+          <Route path="/verify-email" element={<VerifyEmailToken />} />
+          <Route path="/About-us" element={<AboutUs/>}/>      
         </Routes>
       </div>
       <Footer/>

@@ -1,4 +1,3 @@
-// src/pages/DoctorPrescription.jsx
 import React from 'react';
 
 const DoctorPrescription = () => {
